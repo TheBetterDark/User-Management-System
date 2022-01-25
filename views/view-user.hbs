@@ -1,0 +1,86 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/users">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">View User</li>
+    </ol>
+</nav>
+
+<div class="view-user p-3">
+    {{#each rows}}
+    <div class="row mb-5">
+        <div class="col text-center">
+            <h3>{{this.first_name}} {{this.last_name}}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Date Created</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Permissions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{this.first_name}}</th>
+                        <td>{{this.last_name}}</td>
+                        <td>{{this.username}}</td>
+                        <td>{{this.password}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.phone}}</td>
+                        <td>{{this.date_created}}</td>
+                        <td>{{this.status}}</td>
+                        {{#ifEquals this.permissions_id 1}} <td>Admin</td> {{/ifEquals}}
+                        {{#ifEquals this.permissions_id 2}} <td>Moderator</td> {{/ifEquals}}
+                        {{#ifEquals this.permissions_id 3}} <td>User</td> {{/ifEquals}}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col">
+                <b>Comments</b>
+            </div>
+        </div>
+        <div class="col pt-3">
+            <textarea class="form-control" placeholder="Comments" style="height: 200px;" 
+            readonly>{{this.comments}}</textarea>
+        </div>    
+    </div>
+    <div class="col pt-3 text-center align-middle">
+        <a href="/users/edituser/{{this.account_id}}" type="button" class="btn btn-light btn-small" style="font-size: 1rem;">
+          <span class="far fa-edit"></span>
+          <p>Edit</p>
+        </a>
+        <button type="button" class="btn btn-light btn-small" data-bs-toggle="modal" data-bs-target="#deleteModal{{@index}}" style="font-size: 1rem;">
+          <span class="far fa-trash-alt"></span>
+          <p>Delete</p>
+        </button>
+    </div>
+    <div class="modal fade" id="deleteModal{{@index}}" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModal{{@index}}">Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to remove this user?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a href="/users/{{this.account_id}}" type="button" class="btn btn-primary">Delete user</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

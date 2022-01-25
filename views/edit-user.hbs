@@ -1,0 +1,13 @@
+{{#each rows}}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/users">Home</a></li>
+        <li class="breadcrumb-item"><a href="/users/viewuser/{{this.account_id}}">View User</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit User</li>
+    </ol>
+</nav>
+
+<form class="row g-3 needs-validation" method="post" action="/users/edituser/{{this.account_id}}" novalidate>
+    {{> user-form}}
+</form>
+{{/each}}

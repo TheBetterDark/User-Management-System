@@ -1,0 +1,67 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active active" aria-current="page">Home</li>
+    </ol>
+</nav>
+<div class="row">
+  <div class="col-6">
+    <h1>Active Users</h1>
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+    <a href="/users/createuser" type="button" class="btn btn-primary align-self-center">Create New User</a>
+  </div>
+</div>
+<table class="table table-bordered">
+  <thead class="thread-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col" class="text-end">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each rows}}
+    <tr>
+      <th scope="row">{{@index}}</th>
+      <td>{{this.first_name}}</td>
+      <td>{{this.last_name}}</td>
+      <td>{{this.email}}</td>
+      <td>{{this.phone}}</td>
+      <td class="text-end">
+        <a href="/users/viewuser/{{this.account_id}}" type="button" class="btn btn-light btn-small" style="font-size: 1rem;">
+          <span class="far fa-eye"></span>
+          <p>View</p>
+        </a>
+        <a href="/users/edituser/{{this.account_id}}" type="button" class="btn btn-light btn-small" style="font-size: 1rem;">
+          <span class="far fa-edit"></span>
+          <p>Edit</p>
+        </a>
+        <button type="button" class="btn btn-light btn-small" data-bs-toggle="modal" data-bs-target="#deleteModal{{@index}}" style="font-size: 1rem;">
+          <span class="far fa-trash-alt"></span>
+          <p>Delete</p>
+        </button>
+      </td>
+    </tr>
+    <div class="modal fade" id="deleteModal{{@index}}" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModal{{@index}}">Confirmation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to remove this user?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <a href="/users/{{this.account_id}}" type="button" class="btn btn-primary">Delete user</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </tbody>
+</table>

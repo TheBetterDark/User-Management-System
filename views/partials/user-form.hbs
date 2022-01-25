@@ -1,0 +1,92 @@
+<div class="col-md-6">
+    <label class="form-label">Username</label>
+    <input type="text" class="form-control" value="{{this.username}}" placeholder="Username" name="username"
+        required>
+    <div class="invalid-feedback">
+        Required
+    </div>
+</div>
+<div class="col-md-6">
+    <label class="form-label">Password</label>
+    <input type="text" class="form-control" value="{{this.password}}" placeholder="Password" name="password"
+        required>
+    <div class="invalid-feedback">
+        Required
+    </div>
+</div>
+<div class="col-md-6">
+    <label class="form-label">First Name</label>
+    <input type="text" class="form-control" value="{{this.first_name}}" placeholder="First Name" name="first_name"
+        required>
+    <div class="invalid-feedback">
+        Required
+    </div>
+</div>
+<div class="col-md-6">
+    <label class="form-label">Last Name</label>
+    <input type="text" class="form-control" value="{{this.last_name}}" placeholder="Last Name" name="last_name"
+        required>
+    <div class="invalid-feedback">
+        Required
+    </div>
+</div>
+<div class="col-md-6">
+    <label class="form-label">Email</label>
+    <input type="email" class="form-control" value="{{this.email}}" placeholder="Email" name="email" required>
+    <div class="invalid-feedback">
+        Please enter a email.
+    </div>
+</div>
+<div class="col-md-6">
+    <label class="form-label">Phone</label>
+    <input type="tel" class="form-control" value="{{this.phone}}" placeholder="Phone number"
+        name="phone" required>
+    <div class="invalid-feedback">
+        Please enter a valid phone.
+    </div>
+</div>
+<div class="col-md-3">
+    <label class="form-label">Permission Level</label>
+    <select class="form-select" name="permissions" required>
+        <option value="" option selected disabled>Choose...</option>
+        <option value="1" {{#ifEquals this.permissions_id 1}}selected="selected"{{/ifEquals}}>Admin</option>
+        <option value="2" {{#ifEquals this.permissions_id 2}}selected="selected"{{/ifEquals}}>Moderator</option>
+        <option value="3" {{#ifEquals this.permissions_id 3}}selected="selected"{{/ifEquals}}>User</option>
+    </select>
+    <div class="invalid-feedback">
+      Please select a valid option.
+    </div>
+  </div>
+<div class="col-12 d-grid">
+    <label class="form-label">Comments</label>
+    <textarea class="form-control" placeholder="Comments" name="comments" style="height: 200px;"
+        novalidate>{{this.comments}}</textarea>
+</div>
+<div class="col-12 d-grid">
+    <button class="btn btn-primary" type="submit">Submit</button>
+</div>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation');
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener(
+                'submit',
+                function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add('was-validated');
+                },
+                false
+            );
+        });
+    })();
+</script>
